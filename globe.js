@@ -35,9 +35,9 @@ if (canvas) {
     diffuse: 1.4,
     mapSamples: 15000,
     mapBrightness: 7,
-    baseColor: [0.973, 0.973, 0.945],
-    markerColor: [0.694, 0.502, 0.165],
-    glowColor: [0.851, 0.722, 0.463],
+    baseColor: [0.95, 0.92, 0.85],
+    markerColor: [0.79, 0.64, 0.15],
+    glowColor: [0.09, 0.11, 0.17],
     opacity: 0.85,
     markers,
     onRender: state => {

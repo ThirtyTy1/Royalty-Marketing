@@ -1,3 +1,7 @@
+/* Marks that JS is running: CSS only hides .reveal content under html.js,
+   so a script failure can never leave the page invisible. */
+document.documentElement.classList.add('js');
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- Shader hero background ---------- */
@@ -235,7 +239,7 @@ function initNetworkHero() {
 
   const ctx = canvas.getContext('2d');
   const mouse = { x: null, y: null, radius: 140 };
-  const particleColors = ['rgba(217, 184, 118, 0.85)', 'rgba(127, 174, 141, 0.85)'];
+  const particleColors = ['rgba(201, 162, 39, 0.9)', 'rgba(157, 191, 169, 0.9)'];
   let particles = [];
   let animationId = null;
   let visible = false;
@@ -314,8 +318,8 @@ function initNetworkHero() {
             nearMouse = Math.sqrt(dxm * dxm + dym * dym) < mouse.radius;
           }
           ctx.strokeStyle = nearMouse
-            ? `rgba(244, 241, 230, ${opacity})`
-            : `rgba(180, 160, 130, ${opacity * 0.6})`;
+            ? `rgba(237, 230, 211, ${opacity})`
+            : `rgba(201, 162, 39, ${opacity * 0.5})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particles[a].x, particles[a].y);
@@ -399,9 +403,11 @@ function compoundSeries(start, ratePct, months) {
   return points;
 }
 
-/* ---------- Hero chart ---------- */
+/* ---------- Certificate chart ---------- */
 
+(() => {
 const canvas = document.getElementById('growthChart');
+if (!canvas) return;
 const ctx = canvas.getContext('2d');
 const startSlider = document.getElementById('startSlider');
 const rateSlider = document.getElementById('rateSlider');
@@ -446,8 +452,8 @@ function drawHeroChart(progress) {
   ctx.lineTo(padX, h - padY);
   ctx.closePath();
   const gradient = ctx.createLinearGradient(0, 0, 0, h);
-  gradient.addColorStop(0, 'rgba(177, 128, 42, 0.22)');
-  gradient.addColorStop(1, 'rgba(177, 128, 42, 0.02)');
+  gradient.addColorStop(0, 'rgba(201, 162, 39, 0.22)');
+  gradient.addColorStop(1, 'rgba(201, 162, 39, 0.02)');
   ctx.fillStyle = gradient;
   ctx.fill();
 
@@ -458,7 +464,7 @@ function drawHeroChart(progress) {
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
   });
-  ctx.strokeStyle = '#b1802a';
+  ctx.strokeStyle = '#c9a227';
   ctx.lineWidth = 2.5;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
@@ -469,7 +475,7 @@ function drawHeroChart(progress) {
     const [ex, ey] = toXY(visible[visible.length - 1], visible.length - 1);
     ctx.beginPath();
     ctx.arc(ex, ey, 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = '#b1802a';
+    ctx.fillStyle = '#c9a227';
     ctx.fill();
   }
 
@@ -506,6 +512,7 @@ function updateHeroLabels() {
 
 updateHeroLabels();
 animateHeroIn();
+})();
 
 /* ---------- Case study sparklines ---------- */
 
@@ -540,7 +547,7 @@ function drawSparkline(canvasEl, pulse = 0) {
     if (i === 0) sctx.moveTo(x, y);
     else sctx.lineTo(x, y);
   });
-  sctx.strokeStyle = '#2f6b4f';
+  sctx.strokeStyle = '#2e5d46';
   sctx.lineWidth = 2;
   sctx.lineJoin = 'round';
   sctx.lineCap = 'round';
@@ -551,13 +558,13 @@ function drawSparkline(canvasEl, pulse = 0) {
   if (pulse > 0) {
     sctx.beginPath();
     sctx.arc(ex, ey, 3.5 + pulse * 6, 0, Math.PI * 2);
-    sctx.fillStyle = `rgba(177, 128, 42, ${0.25 * (1 - pulse)})`;
+    sctx.fillStyle = `rgba(201, 162, 39, ${0.25 * (1 - pulse)})`;
     sctx.fill();
   }
 
   sctx.beginPath();
   sctx.arc(ex, ey, 3.5, 0, Math.PI * 2);
-  sctx.fillStyle = '#b1802a';
+  sctx.fillStyle = '#c9a227';
   sctx.fill();
 }
 

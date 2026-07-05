@@ -7,17 +7,17 @@
 <meta name="description" content="Royalty is a marketing and website design studio that builds sites and campaigns engineered to compound: small, consistent gains that stack into outsized growth.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Archivo:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a href="#top" class="logo">Royalty</a>
+      <a href="#top" class="logo">Royalty<span class="logo-dot"></span></a>
       <nav class="nav" id="siteNav">
-        <a href="#work">Work</a>
-        <a href="#approach">Approach</a>
+        <a href="#work">The entries</a>
+        <a href="#approach">The terms</a>
         <a href="#contact" class="nav-cta">Start a project</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -28,32 +28,48 @@
 
   <main id="top">
 
-    <section class="shader-hero">
-      <canvas id="shaderCanvas" class="shader-canvas" aria-hidden="true"></canvas>
+    <section class="hero">
+      <div class="wrap">
+        <div class="banknote">
+          <canvas id="shaderCanvas" class="shader-canvas" aria-hidden="true"></canvas>
 
-      <div class="shader-overlay">
-        <div class="trust-badge hero-badge animate-fade-in-down">
-          <span class="trust-icon">👑</span>
-          <span>Trusted by growing businesses</span>
-        </div>
+          <div class="banknote-inner">
+            <div class="banknote-edge rise">
+              <span>Royalty</span>
+              <span class="edge-rule" aria-hidden="true"></span>
+              <span>Marketing &amp; Website Design</span>
+              <span class="edge-rule" aria-hidden="true"></span>
+              <span>Est. 2026</span>
+            </div>
 
-        <div class="shader-copy">
-          <h1>
-            <span class="line gradient-gold text-gradient animate-fade-in-up delay-200">Growth doesn't launch.</span>
-            <span class="line gradient-green text-gradient animate-fade-in-up delay-400">It compounds.</span>
-          </h1>
-          <p class="shader-subtitle animate-fade-in-up delay-600">We design websites and campaigns around one idea: small, consistent gains — a faster page, a sharper headline, a better-targeted campaign — stack month over month into results your last agency called a plateau.</p>
-          <div class="shader-actions animate-fade-in-up delay-800">
-            <a href="#contact" class="btn btn-primary">Start a project</a>
-            <a href="#work" class="btn btn-ghost-dark">See the results</a>
+            <div class="banknote-center">
+              <h1>
+                <span class="rise delay-1">Growth doesn't launch.</span>
+                <em class="rise delay-2">It compounds.</em>
+              </h1>
+              <p class="hero-sub rise delay-3">Small, consistent gains — a faster page, a sharper headline, a better-aimed campaign — deposited month after month, until the curve your last agency called a plateau starts climbing.</p>
+              <div class="hero-actions rise delay-4">
+                <a href="#contact" class="btn btn-gold">Start a project</a>
+                <a href="#work" class="btn btn-line">See the entries</a>
+              </div>
+            </div>
+
+            <div class="banknote-edge rise">
+              <span>No. 001</span>
+              <span class="edge-rule" aria-hidden="true"></span>
+              <span class="edge-legend">This note certifies steady, compounding returns on design &amp; marketing</span>
+              <span class="edge-rule" aria-hidden="true"></span>
+              <span>%</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="chart-section">
+    <section class="certificate">
       <div class="wrap">
-        <div class="hero-chart-card reveal">
+        <div class="paper-card cert-card reveal">
+          <p class="cert-title">Certificate of Compound Interest</p>
           <div class="chart-head">
             <span class="chart-label">Projected growth</span>
             <span class="chart-value" id="chartEndValue">—</span>
@@ -61,23 +77,23 @@
           <canvas id="growthChart" width="520" height="280" role="img" aria-label="Interactive chart showing compounding growth over time"></canvas>
           <div class="chart-controls">
             <label class="slider-field">
-              <span>Starting point <strong id="startLabel">100</strong></span>
+              <span>Starting principal <strong id="startLabel">100</strong></span>
               <input type="range" id="startSlider" min="10" max="400" value="100" step="10">
             </label>
             <label class="slider-field">
-              <span>Monthly compounding <strong id="rateLabel">6%</strong></span>
+              <span>Monthly rate <strong id="rateLabel">6%</strong></span>
               <input type="range" id="rateSlider" min="1" max="20" value="6" step="1">
             </label>
           </div>
-          <p class="chart-footnote">Drag either slider — this is the same math behind every case study below.</p>
+          <p class="chart-footnote">Adjust the terms — the same arithmetic runs every entry in the ledger below.</p>
         </div>
       </div>
     </section>
 
-    <section class="proof-bar">
-      <div class="wrap proof-inner reveal-group">
-        <div class="proof-stat reveal"><span class="num" data-count-to="3.4" data-suffix="×">0×</span><span class="label">average organic traffic after 12 months</span></div>
-        <div class="proof-stat reveal"><span class="num" data-count-to="61" data-suffix="%">0%</span><span class="label">average lift in conversion rate</span></div>
+    <section class="ledger-bar">
+      <div class="wrap ledger-inner reveal-group">
+        <div class="proof-stat reveal"><span class="num" data-count-to="3.4" data-suffix="×">0×</span><span class="label">average organic traffic, twelve months on the books</span></div>
+        <div class="proof-stat reveal"><span class="num" data-count-to="61" data-suffix="%">0%</span><span class="label">average lift in conversion rate across engagements</span></div>
         <div class="proof-stat reveal"><span class="num" data-count-to="14" data-suffix="">0</span><span class="label">clients currently compounding with us</span></div>
       </div>
     </section>
@@ -87,7 +103,7 @@
         <div class="reach-copy reveal">
           <p class="eyebrow">Where we work</p>
           <h2>Wherever your customers are, that's where we show up.</h2>
-          <p>Drag the globe. These are a few of the places our clients — and the customers they're chasing — call home. The same compounding system works no matter where you're based.</p>
+          <p>Drag the globe. A few of the places our clients — and the customers they're after — call home. The arithmetic compounds the same in every one of them.</p>
           <ul class="reach-legend">
             <li>New York</li>
             <li>Austin</li>
@@ -105,31 +121,31 @@
 
     <section class="work" id="work">
       <div class="wrap">
-        <p class="eyebrow">Results</p>
-        <h2>Three clients. Three compounding curves.</h2>
+        <p class="eyebrow">The entries</p>
+        <h2>Three clients, on the record.</h2>
 
         <div class="case-grid reveal-group">
-          <article class="case-card reveal">
+          <article class="paper-card case-card reveal">
+            <p class="case-tag">Entry 01 · D2C homeware</p>
             <canvas class="spark" width="300" height="120" data-start="20" data-rate="9" data-months="18"></canvas>
             <h3>Harbor &amp; Finch</h3>
-            <p class="case-tag">D2C homeware — full site redesign</p>
-            <p class="case-metric"><strong>+210%</strong> organic revenue, 18 months</p>
-            <p class="case-copy">Rebuilt their product pages around load speed and photography, then let 18 months of small conversion tests do the rest.</p>
+            <p class="case-metric"><strong>+210%</strong> organic revenue · 18 months</p>
+            <p class="case-copy">Rebuilt their product pages around load speed and photography, then let eighteen months of small conversion tests do the rest.</p>
           </article>
 
-          <article class="case-card reveal">
+          <article class="paper-card case-card reveal">
+            <p class="case-tag">Entry 02 · B2B services</p>
             <canvas class="spark" width="300" height="120" data-start="40" data-rate="7" data-months="18"></canvas>
             <h3>Vantage Legal</h3>
-            <p class="case-tag">B2B services — SEO + content system</p>
-            <p class="case-metric"><strong>+156%</strong> qualified leads, 14 months</p>
+            <p class="case-metric"><strong>+156%</strong> qualified leads · 14 months</p>
             <p class="case-copy">Replaced a static brochure site with a content engine that compounds search rankings every month it runs.</p>
           </article>
 
-          <article class="case-card reveal">
+          <article class="paper-card case-card reveal">
+            <p class="case-tag">Entry 03 · Local retail</p>
             <canvas class="spark" width="300" height="120" data-start="60" data-rate="5" data-months="18"></canvas>
             <h3>Salt Coffee Co.</h3>
-            <p class="case-tag">Local retail — brand + local campaigns</p>
-            <p class="case-metric"><strong>+92%</strong> foot traffic from online, 9 months</p>
+            <p class="case-metric"><strong>+92%</strong> foot traffic from online · 9 months</p>
             <p class="case-copy">A new site paired with weekly local campaigns, each one tuned from the last week's numbers.</p>
           </article>
         </div>
@@ -140,17 +156,17 @@
       <canvas id="networkCanvas" class="network-canvas" aria-hidden="true"></canvas>
 
       <div class="network-overlay reveal-group">
-        <div class="network-badge hero-badge reveal">
+        <div class="network-badge reveal">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
           <span>Every channel, connected</span>
         </div>
 
-        <h2 class="network-heading text-gradient reveal">The growth network.</h2>
+        <h2 class="network-heading reveal">The growth network.</h2>
 
-        <p class="network-copy reveal">Every page, campaign, and email you send strengthens the next. Not a pile of disconnected tactics — a system engineered so each part makes the others work harder.</p>
+        <p class="network-copy reveal">Every page, campaign, and email pays interest to the next. Not a pile of disconnected tactics — one system, engineered so each part makes the others work harder.</p>
 
-        <a href="#approach" class="btn btn-primary network-cta reveal">
-          See how it connects
+        <a href="#approach" class="btn btn-gold network-cta reveal">
+          See the terms
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
@@ -158,32 +174,32 @@
 
     <section class="approach" id="approach">
       <div class="wrap">
-        <p class="eyebrow">How we work</p>
-        <h2>One engagement, four compounding stages.</h2>
+        <p class="eyebrow">The terms</p>
+        <h2>One engagement, four terms.</h2>
         <ol class="stage-list reveal-group">
           <li class="stage reveal">
-            <span class="stage-num">01</span>
+            <span class="stage-num">I</span>
             <div>
               <h3>Audit</h3>
-              <p>We find the two or three levers that move the whole system — not a 40-page report of everything that could theoretically be better.</p>
+              <p>We find the two or three levers that move the whole system — not a forty-page report of everything that could theoretically be better.</p>
             </div>
           </li>
           <li class="stage reveal">
-            <span class="stage-num">02</span>
+            <span class="stage-num">II</span>
             <div>
               <h3>Design</h3>
               <p>A site and visual identity built around your actual subject and audience — never a template with your logo dropped in.</p>
             </div>
           </li>
           <li class="stage reveal">
-            <span class="stage-num">03</span>
+            <span class="stage-num">III</span>
             <div>
               <h3>Launch</h3>
-              <p>Ship the redesign and the first campaigns together, so the curve starts climbing from week one, not quarter three.</p>
+              <p>The redesign and the first campaigns ship together, so the curve starts climbing from week one, not quarter three.</p>
             </div>
           </li>
           <li class="stage reveal">
-            <span class="stage-num">04</span>
+            <span class="stage-num">IV</span>
             <div>
               <h3>Compound</h3>
               <p>Monthly tuning from real data — copy, pages, and campaigns each adjusted from what last month proved, not guessed again.</p>
@@ -196,16 +212,16 @@
     <section class="newsletter">
       <div class="wrap newsletter-inner reveal">
         <div class="newsletter-copy">
-          <p class="eyebrow">Stay in the loop</p>
-          <h2>One email a month. One real result.</h2>
-          <p>No newsletter fluff — just the actual number from whichever client compounded the most that month.</p>
+          <p class="eyebrow">The monthly statement</p>
+          <h2>One email a month. One audited number.</h2>
+          <p>No newsletter fluff — the actual figure from whichever client compounded hardest that month, and what did it.</p>
         </div>
         <form class="newsletter-form" id="newsletterForm" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="newsletter">
           <p class="hp-field"><label>Leave this field blank: <input name="bot-field"></label></p>
           <label class="sr-only" for="newsletterEmail">Email address</label>
           <input type="email" id="newsletterEmail" name="email" placeholder="you@business.com" required>
-          <button type="submit" class="btn btn-primary">Subscribe</button>
+          <button type="submit" class="btn btn-gold">Subscribe</button>
         </form>
         <p class="form-note" id="newsletterNote" aria-live="polite"></p>
       </div>
@@ -218,7 +234,7 @@
           <h2>Tell us what you're building.</h2>
           <p>Send a few lines about your business and where growth has stalled. We reply within one business day with next steps — no discovery-call runaround.</p>
         </div>
-        <form class="contact-form reveal" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form class="paper-card contact-form reveal" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="contact">
           <p class="hp-field"><label>Leave this field blank: <input name="bot-field"></label></p>
           <label>
@@ -233,7 +249,7 @@
             <span>What are you building?</span>
             <textarea name="message" rows="4" required></textarea>
           </label>
-          <button type="submit" class="btn btn-primary">Send</button>
+          <button type="submit" class="btn btn-ink">Send</button>
           <p class="form-note" id="formNote" aria-live="polite"></p>
         </form>
       </div>
@@ -243,8 +259,8 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <span class="logo">Royalty</span>
-      <span class="footer-copy">© 2026 Royalty Marketing &amp; Website Design. Growth, compounded.</span>
+      <span class="logo">Royalty<span class="logo-dot"></span></span>
+      <span class="footer-copy">© 2026 Royalty Marketing &amp; Website Design · Growth, compounded</span>
     </div>
   </footer>
 
