@@ -32,15 +32,15 @@
       <canvas id="shaderCanvas" class="shader-canvas" aria-hidden="true"></canvas>
 
       <div class="shader-overlay">
-        <div class="trust-badge animate-fade-in-down">
+        <div class="trust-badge hero-badge animate-fade-in-down">
           <span class="trust-icon">👑</span>
           <span>Trusted by growing businesses</span>
         </div>
 
         <div class="shader-copy">
           <h1>
-            <span class="line gradient-gold animate-fade-in-up delay-200">Growth doesn't launch.</span>
-            <span class="line gradient-green animate-fade-in-up delay-400">It compounds.</span>
+            <span class="line gradient-gold text-gradient animate-fade-in-up delay-200">Growth doesn't launch.</span>
+            <span class="line gradient-green text-gradient animate-fade-in-up delay-400">It compounds.</span>
           </h1>
           <p class="shader-subtitle animate-fade-in-up delay-600">We design websites and campaigns around one idea: small, consistent gains — a faster page, a sharper headline, a better-targeted campaign — stack month over month into results your last agency called a plateau.</p>
           <div class="shader-actions animate-fade-in-up delay-800">
@@ -82,6 +82,27 @@
       </div>
     </section>
 
+    <section class="reach">
+      <div class="wrap reach-inner reveal-group">
+        <div class="reach-copy reveal">
+          <p class="eyebrow">Where we work</p>
+          <h2>Wherever your customers are, that's where we show up.</h2>
+          <p>Drag the globe. These are a few of the places our clients — and the customers they're chasing — call home. The same compounding system works no matter where you're based.</p>
+          <ul class="reach-legend">
+            <li>New York</li>
+            <li>Austin</li>
+            <li>Chicago</li>
+            <li>Toronto</li>
+            <li>Los Angeles</li>
+            <li>London</li>
+          </ul>
+        </div>
+        <div class="reach-globe reveal">
+          <canvas id="globeCanvas"></canvas>
+        </div>
+      </div>
+    </section>
+
     <section class="work" id="work">
       <div class="wrap">
         <p class="eyebrow">Results</p>
@@ -112,6 +133,26 @@
             <p class="case-copy">A new site paired with weekly local campaigns, each one tuned from the last week's numbers.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="network-hero">
+      <canvas id="networkCanvas" class="network-canvas" aria-hidden="true"></canvas>
+
+      <div class="network-overlay reveal-group">
+        <div class="network-badge hero-badge reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>Every channel, connected</span>
+        </div>
+
+        <h2 class="network-heading text-gradient reveal">The growth network.</h2>
+
+        <p class="network-copy reveal">Every page, campaign, and email you send strengthens the next. Not a pile of disconnected tactics — a system engineered so each part makes the others work harder.</p>
+
+        <a href="#approach" class="btn btn-primary network-cta reveal">
+          See how it connects
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
       </div>
     </section>
 
@@ -149,6 +190,24 @@
             </div>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="wrap newsletter-inner reveal">
+        <div class="newsletter-copy">
+          <p class="eyebrow">Stay in the loop</p>
+          <h2>One email a month. One real result.</h2>
+          <p>No newsletter fluff — just the actual number from whichever client compounded the most that month.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="newsletter">
+          <p class="hp-field"><label>Leave this field blank: <input name="bot-field"></label></p>
+          <label class="sr-only" for="newsletterEmail">Email address</label>
+          <input type="email" id="newsletterEmail" name="email" placeholder="you@business.com" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <p class="form-note" id="newsletterNote" aria-live="polite"></p>
       </div>
     </section>
 
@@ -190,5 +249,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script type="module" src="globe.js"></script>
 </body>
 </html>

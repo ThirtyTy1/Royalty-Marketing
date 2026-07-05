@@ -225,6 +225,153 @@ function initShaderHero() {
 
 initShaderHero();
 
+/* ---------- Network hero (particle canvas) ---------- */
+/* Ported from a React/canvas hero component into plain canvas + vanilla JS. */
+
+function initNetworkHero() {
+  const section = document.querySelector('.network-hero');
+  const canvas = document.getElementById('networkCanvas');
+  if (!section || !canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const mouse = { x: null, y: null, radius: 140 };
+  const particleColors = ['rgba(217, 184, 118, 0.85)', 'rgba(127, 174, 141, 0.85)'];
+  let particles = [];
+  let animationId = null;
+  let visible = false;
+
+  class NetworkParticle {
+    constructor(x, y, dx, dy, size, color) {
+      this.x = x;
+      this.y = y;
+      this.dx = dx;
+      this.dy = dy;
+      this.size = size;
+      this.color = color;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    update() {
+      if (this.x > canvas.width || this.x < 0) this.dx = -this.dx;
+      if (this.y > canvas.height || this.y < 0) this.dy = -this.dy;
+
+      if (mouse.x !== null) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius + this.size) {
+          const forceX = dx / dist;
+          const forceY = dy / dist;
+          const force = (mouse.radius - dist) / mouse.radius;
+          this.x -= forceX * force * 4;
+          this.y -= forceY * force * 4;
+        }
+      }
+
+      this.x += this.dx;
+      this.y += this.dy;
+      this.draw();
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    const count = Math.min(160, (canvas.width * canvas.height) / 9000);
+    for (let i = 0; i < count; i += 1) {
+      const size = Math.random() * 1.6 + 1;
+      const x = Math.random() * (canvas.width - size * 2) + size;
+      const y = Math.random() * (canvas.height - size * 2) + size;
+      const dx = (Math.random() * 0.4) - 0.2;
+      const dy = (Math.random() * 0.4) - 0.2;
+      const color = particleColors[i % 2];
+      particles.push(new NetworkParticle(x, y, dx, dy, size, color));
+    }
+  }
+
+  function resize() {
+    canvas.width = section.clientWidth;
+    canvas.height = section.clientHeight;
+    initParticles();
+  }
+
+  function connect() {
+    const maxDist = (canvas.width / 7) * (canvas.height / 7);
+    for (let a = 0; a < particles.length; a += 1) {
+      for (let b = a; b < particles.length; b += 1) {
+        const dist = ((particles[a].x - particles[b].x) ** 2) + ((particles[a].y - particles[b].y) ** 2);
+        if (dist < maxDist) {
+          const opacity = 1 - (dist / 20000);
+          let nearMouse = false;
+          if (mouse.x !== null) {
+            const dxm = particles[a].x - mouse.x;
+            const dym = particles[a].y - mouse.y;
+            nearMouse = Math.sqrt(dxm * dxm + dym * dym) < mouse.radius;
+          }
+          ctx.strokeStyle = nearMouse
+            ? `rgba(244, 241, 230, ${opacity})`
+            : `rgba(180, 160, 130, ${opacity * 0.6})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function renderFrame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => p.update());
+    connect();
+  }
+
+  function loop() {
+    if (!visible) {
+      animationId = null;
+      return;
+    }
+    renderFrame();
+    animationId = requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', resize);
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  canvas.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  resize();
+
+  if (prefersReducedMotion) {
+    renderFrame();
+    return;
+  }
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      visible = entry.isIntersecting;
+      if (visible && !animationId) {
+        loop();
+      }
+    });
+  }, { threshold: 0.05 });
+  sectionObserver.observe(section);
+}
+
+initNetworkHero();
+
 /* ---------- Nav toggle ---------- */
 
 const navToggle = document.getElementById('navToggle');
@@ -468,29 +615,41 @@ if (prefersReducedMotion) {
   revealEls.forEach(el => revealObserver.observe(el));
 }
 
-/* ---------- Contact form (Netlify Forms via AJAX) ---------- */
-
-const contactForm = document.getElementById('contactForm');
-const formNote = document.getElementById('formNote');
+/* ---------- Netlify Forms via AJAX ---------- */
 
 function encodeFormData(form) {
   return new URLSearchParams(new FormData(form)).toString();
 }
 
-contactForm.addEventListener('submit', e => {
-  e.preventDefault();
-  formNote.textContent = 'Sending…';
+function wireNetlifyForm(form, note, successMessage) {
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    note.textContent = 'Sending…';
 
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: encodeFormData(contactForm)
-  })
-    .then(() => {
-      formNote.textContent = "Thanks — we'll reply within one business day.";
-      contactForm.reset();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData(form)
     })
-    .catch(() => {
-      formNote.textContent = "Something went wrong sending that — please email us directly instead.";
-    });
-});
+      .then(() => {
+        note.textContent = successMessage;
+        form.reset();
+      })
+      .catch(() => {
+        note.textContent = 'Something went wrong sending that — please email us directly instead.';
+      });
+  });
+}
+
+wireNetlifyForm(
+  document.getElementById('contactForm'),
+  document.getElementById('formNote'),
+  "Thanks — we'll reply within one business day."
+);
+
+wireNetlifyForm(
+  document.getElementById('newsletterForm'),
+  document.getElementById('newsletterNote'),
+  "Subscribed — watch your inbox next month."
+);
